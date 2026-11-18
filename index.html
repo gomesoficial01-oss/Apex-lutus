@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src https:; object-src 'none'; base-uri 'none'; form-action 'none'"><meta name="theme-color" content="#050a18"><link rel="manifest" href="manifest.json"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><title>A.P.E.X. — Personal Evolution System</title>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https:; object-src 'none'; base-uri 'none'; form-action 'none'"><meta name="theme-color" content="#050a18"><link rel="manifest" href="manifest.json"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><title>A.P.E.X. — Personal Evolution System</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <style>
 :root{--bg:#050a18;--card:#0b1430;--line:#17306b;--blue:#2f6bff;--cyan:#22e3ff;--tx:#e6eeff;--mut:#8aa0d0;--ok:#3ddc97;--bad:#ff5c7a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -301,7 +301,7 @@ $("#app").innerHTML=`<div class="card"><h2>Teste: ${A.n}</h2>${QZ.qs.map((q,i)=>
 function grade(){let ok=0;QZ.qs.forEach((q,i)=>{const s=document.querySelector(`input[name=q${i}]:checked`),r=s&&q.o[+s.value].c;if(r){ok++;S.errs=S.errs.filter(e=>e.q!=q.q)}else if(!S.errs.some(e=>e.q==q.q))S.errs.push({a:QZ.a,q:q.q,c:q.o.find(o=>o.c).t})});
 const sc=Math.round(ok/QZ.qs.length*100),p=sc>=70;S.tests.push({a:QZ.a,d:today(),s:sc,ok:p});active();if(p)award(QZ.a,40);else award(QZ.a,5);
 alert(p?`Aprovado com ${sc}%. +40 XP`:`${sc}%. Nota mínima: 70%. Revise a aula e tente amanhã.`);go("treino")}
-function aiPrompt(){$("#aip").value="Analise meu progresso no A.P.E.X. e sugira um plano para as próximas 2 semanas.\nNíveis: "+AREAS.map(a=>`${a.n} ${level(a.id)}`).join(", ")+`\nXP: ${tot()}, sequência: ${streak()} dias, missões: ${S.done.length}, testes: ${S.tests.map(t=>t.a+":"+t.s+"%").join(" ")||"nenhum"}\nÚltimos diários (dificuldades): `+S.diary.slice(-3).map(e=>e.f[3]).filter(Boolean).join(" | ")}
+function aiPrompt(){$("#aip").value=aiText()}
 function exp(){S.lastBackup=today();save();const b=new Blob([JSON.stringify(S)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="apex-backup-"+today()+".json";a.click()}
 function imp(ev){const f=ev.target.files[0];if(!f)return;f.text().then(t=>{try{const d=JSON.parse(t);if(!d.xp||!d.done)throw 0;if(confirm("Substituir os dados atuais pelo backup?")){S=clean(d);render()}}catch(e){alert("Arquivo de backup inválido.")}})}
 active();badges();render();if(RECOVERED)alert("Os dados principais estavam corrompidos. Recuperei a última cópia automática.");
