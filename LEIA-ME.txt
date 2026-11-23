@@ -1,2 +1,4 @@
 A.P.E.X. (versão sem pastas, para publicar pelo celular)
 Envie TODOS estes arquivos para a raiz de um repositório do GitHub, ative o GitHub Pages e abra o link no Chrome para instalar.
+
+Versão visual v26: navegação inferior adaptável, cabeçalho redesenhado e conversa da IA reorganizada.
